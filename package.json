@@ -4,7 +4,7 @@
   "description": "Functions for manipulating shopify stores",
   "main": "index.js",
   "scripts": {
-    "function:deploy": "gcloud beta functions deploy helloWorld --stage-bucket [BUCKET_NAME] --trigger-topic hello_world"
+    "function:deploy": ""
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,15 @@
+{
+  "name": "order-tags",
+  "version": "1.0.0",
+  "description": "A function which updates an orders tags when a webhook is triggered",
+  "main": "index.js",
+  "config" : {
+    "port" : "8080"
+  },
+  "scripts": {
+    "test": "",
+    "deploy": ""
+  },
+  "author": "",
+  "license": "ISC"
+}

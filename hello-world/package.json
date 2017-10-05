@@ -1,0 +1,13 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "A simple function example",
+  "main": "index.js",
+  "config" : {
+    "repo" : "https://source.developers.google.com/projects/shopify-182021/repos/unlimited-functions"
+  },
+  "scripts": {
+    "test": "",
+    "deploy": "gcloud beta functions deploy helloWorld --source=https://source.developers.google.com/projects/shopify-182021/repos/unlimited-functions/paths/hello-world --trigger-http hello_world"
+  }
+}
