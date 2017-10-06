@@ -24,36 +24,33 @@ exports.helloWorld = function helloWorld(req, res) {
   }
 
   function updateTags(){
-    // Request data
-    let postData = {
-      "product": {
-        "id": 9875080644,
-        "tags": "Barnes & Noble, John's Fav"
-      }
-    };
-
     // Request options
     let options = {
-      url: 'http://localhost:8010/anchorsuite/us-central1/helloWorld',
       method: 'PUT',
       hostname: 'darxe.myshopify.com',
       path: '/admin/products/' + '9875080644' + '.json',
       headers: {
         'Content-Type': 'application/json',
+        authorization: 'Basic YTA1MTllMjFkODJkYzMzNTg2MzdiYjJjOGVhNDdjNmY6MDRmYzAxNjliMmE5NDg4N2RkNGVlZjBmNTVkMzIyZTU=',
         'User-Agent': 'request'
-      }
+      },
+      body: {
+        product: {
+          id: 9875080644,
+          tags: 'Barnes & Noble, John\'s Fav'
+        }
+      },
+      json: true
     };
 
-    const req = request(options, function (error, res, body) {
-      // TODO: Add error handling
+    return request(options, function (error, res, body) {
+      if (error) throw new Error(error);
     });
-
-    return req.write(postData);
   }
 
   if (verifyShopifyHook(req)){
     // Everything is okay.
-    console.log(req.body);
+    updateTags();
     res.status(200).send('Success: ' + req.body);
   } else {
     res.status(400).send(req);
