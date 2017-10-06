@@ -58,7 +58,7 @@ exports.addTags = function addTags(req, res) {
   if (req.body){
     // Everything is okay.
     updateTags();
-    res.status(200).send('Success: ' + req.body);
+    res.status(200).send('Success: ' + JSON.stringify(req.body));
   } else {
     res.status(400).send(req);
   }
