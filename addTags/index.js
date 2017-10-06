@@ -21,8 +21,6 @@ exports.addTags = function addTags(req, res) {
   var productId = req.body.id;
   var newTags = 'tags added, tag\'s now';
 
-  console.log(hmac)
-
   // Verify the Shopify webhook's integrity
   // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
   function verifyShopifyHook(req) {
@@ -31,7 +29,7 @@ exports.addTags = function addTags(req, res) {
               .update(req.body)
               .digest('base64');
 
-              console.log(digest)
+              console.log(digest, hmac)
 
       return digest === hmac;
   }
