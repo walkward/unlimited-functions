@@ -25,13 +25,16 @@ exports.addTags = function addTags(req, res) {
 
   // Verify the Shopify webhook's integrity
   // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
-  // function verifyShopifyHook(req) {
-  //     var digest = crypto.createHmac('SHA256', sharedSecret)
-  //             .update(new Buffer(req.body, 'utf8'))
-  //             .digest('base64');
-  //
-  //     return digest === hmac;
-  // }
+  function verifyShopifyHook(req) {
+      var digest = crypto.createHmac('SHA256', sharedSecret)
+              .update(new Buffer(req.body, 'utf8'))
+              .digest('base64');
+
+              console.log(digest)
+
+      return digest === hmac;
+  }
+  verifyShopifyHook(req);
 
   function updateTags(){
     // Request options
