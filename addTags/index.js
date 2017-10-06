@@ -26,8 +26,9 @@ exports.addTags = function addTags(req, res) {
   // Verify the Shopify webhook's integrity
   // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
   function verifyShopifyHook(req) {
+      var reqBody = new Buffer(req.body, 'utf8');
       var digest = crypto.createHmac('SHA256', sharedSecret)
-              .update(new Buffer(req.body, 'utf8'))
+              .update(reqBody)
               .digest('base64');
 
               console.log(digest)
