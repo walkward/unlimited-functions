@@ -16,11 +16,9 @@ exports.addTags = function addTags(req, res) {
   var apiSecret = '04fc0169b2a94887dd4eef0f55d322e5';
   var storeName = 'darxe.myshopify.com';
 
-  console.log(req.body)
-
   var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
   var hmac = JSON.stringify(req.headers['X-Shopify-Hmac-Sha256']);
-  var productId = 9875080644;
+  var productId = req.body.id;
   var newTags = 'tags added, tag\'s now';
 
   // Verify the Shopify webhook's integrity
