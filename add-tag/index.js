@@ -9,7 +9,7 @@
  var crypto = require("crypto");
  var request = require('request');
 
-exports.helloWorld = function helloWorld(req, res) {
+exports.addTags = function addTags(req, res) {
   // The Shopify app's shared secret, viewable from the Partner dashboard
   var sharedSecret = "fb2110342a563e14495e5178289609166dd7c0a6eafbda88a16b0761213252fd";
   var hmac = JSON.stringify(req.headers['x-shopify-hmac-sha256']);
