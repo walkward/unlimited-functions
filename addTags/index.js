@@ -29,13 +29,14 @@ exports.addTags = function addTags(req, res) {
     getRawBody(req)
     .then(function (buf) {
       var digest = crypto.createHmac('SHA256', sharedSecret).update(new Buffer(buf, 'utf8')).digest('base64');
-      console.log(digest, hmac)
+      console.log("DIGEST:", digest)
+      console.log("HMAC:", hmac)
       return digest === hmac;
     })
     .catch(function (err) {
       res.status(400).send(err);
     })
-  
+
   }
   verifyShopifyHook(req);
 
