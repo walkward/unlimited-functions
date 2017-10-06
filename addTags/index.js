@@ -28,7 +28,7 @@ exports.addTags = function addTags(req, res) {
   function verifyShopifyHook(req) {
       var reqBody = new Buffer(req.body, 'utf8');
       var digest = crypto.createHmac('SHA256', sharedSecret)
-              .update(reqBody)
+              .update(req.body)
               .digest('base64');
 
               console.log(digest)
