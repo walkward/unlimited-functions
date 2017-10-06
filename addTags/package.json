@@ -19,6 +19,7 @@
     "push": "git add . && git commit -m 'updates' && git push"
   },
   "dependencies": {
+    "raw-body": "^2.3.2",
     "request": "^2.83.0"
   }
 }

@@ -8,6 +8,7 @@
  var http = require("http");
  var crypto = require("crypto");
  var request = require('request');
+ var getRawBody = require('raw-body');
 
 exports.addTags = function addTags(req, res) {
   // The Shopify app's shared secret, viewable from the Partner dashboard
@@ -24,14 +25,17 @@ exports.addTags = function addTags(req, res) {
   // Verify the Shopify webhook's integrity
   // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
   function verifyShopifyHook(req) {
-    req.rawBody = '';
-    req.pipe(concat(function(data){
-      req.rawBody = data;
-    }));
-    var digest = crypto.createHmac('SHA256', sharedSecret).update(new Buffer(req.rawBody, 'utf8')).digest('base64');
-    console.log(digest, hmac)
 
-    return digest === hmac;
+    getRawBody(req)
+    .then(function (buf) {
+      var digest = crypto.createHmac('SHA256', sharedSecret).update(new Buffer(buf, 'utf8')).digest('base64');
+      console.log(digest, hmac)
+      return digest === hmac;
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    })
+  
   }
   verifyShopifyHook(req);
 
