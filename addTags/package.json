@@ -2,9 +2,9 @@
   "name": "addTags",
   "version": "1.0.0",
   "description": "A function to update tags",
-  "config" : {
+  "config": {
     "name": "addTags",
-    "repo" : "https://source.developers.google.com/p/shopify-182021/r/unlimited-functions",
+    "repo": "https://source.developers.google.com/p/shopify-182021/r/unlimited-functions",
     "local_path": "http://localhost:8010/anchorsuite/us-central1/addTags",
     "http_path": "https://us-central1-shopify-182021.cloudfunctions.net/addTags"
   },
@@ -17,5 +17,8 @@
     "req": "node ./request.js",
     "req:dev": "node ./request.js",
     "push": "git add . && git commit -m 'updates' && git push"
+  },
+  "dependencies": {
+    "request": "^2.83.0"
   }
 }
