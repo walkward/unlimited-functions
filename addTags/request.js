@@ -12,7 +12,7 @@ var postData = JSON.stringify({
 });
 
 var options = {
-  url: 'http://localhost:8010/anchorsuite/us-central1/helloWorld',
+  url: 'http://localhost:8010/anchorsuite/us-central1/addTags',
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

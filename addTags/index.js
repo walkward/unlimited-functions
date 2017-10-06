@@ -27,8 +27,7 @@ exports.addTags = function addTags(req, res) {
     // Request options
     var options = {
       method: 'PUT',
-      hostname: 'darxe.myshopify.com',
-      path: '/admin/products/' + '9875080644' + '.json',
+      url: 'https://darxe.myshopify.com/admin/products/9875080644.json',
       headers: {
         'Content-Type': 'application/json',
         authorization: 'Basic YTA1MTllMjFkODJkYzMzNTg2MzdiYjJjOGVhNDdjNmY6MDRmYzAxNjliMmE5NDg4N2RkNGVlZjBmNTVkMzIyZTU=',
@@ -43,7 +42,7 @@ exports.addTags = function addTags(req, res) {
       json: true
     };
 
-    return request(options, function (error, res, body) {
+    request(options, function (error, res, body) {
       if (error) throw new Error(error);
     });
   }
