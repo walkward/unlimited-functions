@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Functions for manipulating shopify stores",
   "main": "index.js",
+  "config": {
+    "verification": "fb2110342a563e14495e5178289609166dd7c0a6eafbda88a16b0761213252fd"
+  },
   "scripts": {
     "function:deploy": ""
   },

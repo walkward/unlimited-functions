@@ -1,14 +1,11 @@
 /**
- * Responds to any HTTP request that can provide a "message" field in the body.
+ * Sample url request
  *
  * @param {!Object} req Cloud Function request context.
  * @param {!Object} res Cloud Function response context.
  */
 
 var request = require('request');
-const http = require('http');
-const crypto = require('crypto');
-const verify = crypto.createVerify('SHA256');
 
 var postData = JSON.stringify({
   message: 'Hello World!'
