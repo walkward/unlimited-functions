@@ -4,8 +4,8 @@
   "description": "A function to update tags",
   "main": "index.js",
   "config" : {
-    "name": "add-tag",
-    "path": "add-tag",
+    "name": "addTags",
+    "path": "/add-tag",
     "repo" : "https://source.developers.google.com/p/shopify-182021/r/unlimited-functions",
     "local_path": "http://localhost:8010/anchorsuite/us-central1/add-tag",
     "http_path": "https://us-central1-shopify-182021.cloudfunctions.net/add-tag"
@@ -15,7 +15,7 @@
     "test:dev": "functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
     "test": "gcloud beta functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
     "deploy:dev": "functions deploy $npm_package_config_name --trigger-http",
-    "deploy": "npm run push && gcloud beta functions deploy $npm_package_config_name --source-url $npm_package_config_repo --source-path /$npm_package_config_path --trigger-http",
+    "deploy": "gcloud beta functions deploy $npm_package_config_name --source-url $npm_package_config_repo --source-path $npm_package_config_path --trigger-http",
     "req": "",
     "req:dev": "node ./request.js",
     "push": "git add . && git commit -m 'updates' && git push"
