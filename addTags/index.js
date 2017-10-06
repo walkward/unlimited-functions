@@ -17,7 +17,7 @@ exports.addTags = function addTags(req, res) {
   var storeName = 'darxe.myshopify.com'; // SETUP: Add store domain
 
   var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
-  var hmac = req.headers;
+  var hmac = req.headers['x-shopify-hmac-sha256'];
   var productId = req.body.id;
   var newTags = 'tags added, tag\'s now';
 
