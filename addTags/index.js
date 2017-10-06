@@ -18,24 +18,29 @@ exports.addTags = function addTags(req, res) {
   var storeName = 'darxe.myshopify.com'; // SETUP: Add store domain
 
   var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
-  var hmac = req.headers['x-shopify-hmac-sha256'];
   var productId = req.body.id;
   var newTags = 'tags added, tag\'s now';
 
   // Verify the Shopify webhook's integrity
   // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
-  var digest = '';
+
   function verifyShopifyHook(req){
-    return getRawBody(req).then(function (buf) {
-      digest = crypto.createHmac('SHA256', sharedSecret).update(new Buffer(buf, 'utf8')).digest('base64');
-      return digest === hmac;
+    getRawBody(req).then(function (buf) {
+      var hmac = req.headers['x-shopify-hmac-sha256'];
+      var digest = crypto.createHmac('SHA256', sharedSecret).update(new Buffer(buf, 'utf8')).digest('base64');
+
+      if (digest !== hmac) {
+        res.status(400).send(err);
+      } else {
+        console.log('authenticated')
+      }
+      
     })
     .catch(function (err) {
       res.status(400).send(err);
     })
-    return digest === hmac;
   }
-  console.log(verifyShopifyHook(req));
+  verifyShopifyHook(req);
 
   function updateTags(){
     // Request options
