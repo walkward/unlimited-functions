@@ -16,9 +16,11 @@ exports.addTags = function addTags(req, res) {
   var apiSecret = '04fc0169b2a94887dd4eef0f55d322e5';
   var storeName = 'darxe.myshopify.com';
 
+  console.log(req.body.product.id)
+
   var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
   var hmac = JSON.stringify(req.headers['X-Shopify-Hmac-Sha256']);
-  var productId = req.body.product.id;
+  var productId = 9875080644;
   var newTags = 'tags added, tag\'s now';
 
   // Verify the Shopify webhook's integrity
@@ -35,7 +37,7 @@ exports.addTags = function addTags(req, res) {
     // Request options
     var options = {
       method: 'PUT',
-      url: 'https://' + storeName + '/admin/products/' + req.body.product.id + '.json',
+      url: 'https://' + storeName + '/admin/products/' + productId + '.json',
       headers: {
         'Content-Type': 'application/json',
         authorization: authorization,
