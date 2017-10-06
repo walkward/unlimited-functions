@@ -15,8 +15,9 @@
     "test:dev": "functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
     "test": "gcloud beta functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
     "deploy:dev": "functions deploy $npm_package_config_name --trigger-http",
-    "deploy": "gcloud beta functions deploy $npm_package_config_name --source-url $npm_package_config_repo --source-path /$npm_package_config_path --trigger-http",
+    "deploy": "npm run push && gcloud beta functions deploy $npm_package_config_name --source-url $npm_package_config_repo --source-path /$npm_package_config_path --trigger-http",
     "req": "",
-    "req:dev": "node ./request.js"
+    "req:dev": "node ./request.js",
+    "push": "git add . && git commit -m 'updates' && git push"
   }
 }
