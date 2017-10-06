@@ -1,5 +1,5 @@
 /**
- * Responds to any HTTP request that can provide a "message" field in the body.
+ * Updates product tags when webhook is triggered
  *
  * @param {!Object} req Cloud Function request context.
  * @param {!Object} res Cloud Function response context.
@@ -25,7 +25,7 @@ exports.addTags = function addTags(req, res) {
 
   function updateTags(){
     // Request options
-    let options = {
+    var options = {
       method: 'PUT',
       hostname: 'darxe.myshopify.com',
       path: '/admin/products/' + '9875080644' + '.json',
