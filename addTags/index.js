@@ -11,32 +11,40 @@
 
 exports.addTags = function addTags(req, res) {
   // The Shopify app's shared secret, viewable from the Partner dashboard
-  var sharedSecret = "fb2110342a563e14495e5178289609166dd7c0a6eafbda88a16b0761213252fd";
+  var sharedSecret = 'fb2110342a563e14495e5178289609166dd7c0a6eafbda88a16b0761213252fd';
+  var apiKey = 'a0519e21d82dc3358637bb2c8ea47c6f';
+  var apiSecret = '04fc0169b2a94887dd4eef0f55d322e5';
+  var storeName = 'darxe.myshopify.com';
+
+  var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
   var hmac = JSON.stringify(req.headers['X-Shopify-Hmac-Sha256']);
+  var productId = req.body.product.id;
+  var newTags = 'tags added, tag\'s now';
 
   // Verify the Shopify webhook's integrity
-  function verifyShopifyHook(req) {
-      var digest = crypto.createHmac('SHA256', sharedSecret)
-              .update(new Buffer(req.body, 'utf8'))
-              .digest('base64');
-
-      return digest === hmac;
-  }
+  // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
+  // function verifyShopifyHook(req) {
+  //     var digest = crypto.createHmac('SHA256', sharedSecret)
+  //             .update(new Buffer(req.body, 'utf8'))
+  //             .digest('base64');
+  //
+  //     return digest === hmac;
+  // }
 
   function updateTags(){
     // Request options
     var options = {
       method: 'PUT',
-      url: 'https://darxe.myshopify.com/admin/products/9875080644.json',
+      url: 'https://' + storeName + '/admin/products/' + req.body.product.id + '.json',
       headers: {
         'Content-Type': 'application/json',
-        authorization: 'Basic YTA1MTllMjFkODJkYzMzNTg2MzdiYjJjOGVhNDdjNmY6MDRmYzAxNjliMmE5NDg4N2RkNGVlZjBmNTVkMzIyZTU=',
+        authorization: authorization,
         'User-Agent': 'request'
       },
       body: {
         product: {
-          id: 9875080644,
-          tags: 'Barnes & Noble, John\'s Fav'
+          id: productId,
+          tags: newTags
         }
       },
       json: true
@@ -47,7 +55,6 @@ exports.addTags = function addTags(req, res) {
     });
   }
 
-  // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
   if (req.body){
     // Everything is okay.
     updateTags();

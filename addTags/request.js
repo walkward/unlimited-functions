@@ -8,7 +8,9 @@
 var request = require('request');
 
 var postData = JSON.stringify({
-  message: 'Hello World!'
+  product: {
+    id: 9875080644
+  }
 });
 
 var options = {

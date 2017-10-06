@@ -10,8 +10,8 @@
   },
   "scripts": {
     "start": "functions start",
-    "test:dev": "functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
-    "test": "gcloud beta functions call $npm_package_config_name --data '{\"message\":\"Hello World!\"}'",
+    "test:dev": "functions call $npm_package_config_name --data '{\"product\":{\"id\":9875080644}}'",
+    "test": "gcloud beta functions call $npm_package_config_name --data '{\"product\":{\"id\":9875080644}}'",
     "deploy:dev": "functions deploy $npm_package_config_name --trigger-http",
     "deploy": "gcloud beta functions deploy $npm_package_config_name --source-url $npm_package_config_repo --source-path /$npm_package_config_name --trigger-http",
     "req": "node ./request.js",
