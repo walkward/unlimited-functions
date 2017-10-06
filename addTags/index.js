@@ -16,7 +16,7 @@ exports.addTags = function addTags(req, res) {
   var apiSecret = '04fc0169b2a94887dd4eef0f55d322e5';
   var storeName = 'darxe.myshopify.com';
 
-  console.log(req.body.product.id)
+  console.log(req.body)
 
   var authorization = 'Basic ' + new Buffer(apiKey + ':' + apiSecret).toString('base64');
   var hmac = JSON.stringify(req.headers['X-Shopify-Hmac-Sha256']);
