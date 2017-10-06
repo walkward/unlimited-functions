@@ -47,7 +47,8 @@ exports.addTags = function addTags(req, res) {
     });
   }
 
-  if (verifyShopifyHook(req)){
+  // TODO: Need to authenticate the webhook request verifyShopifyHook(req)
+  if (req.body){
     // Everything is okay.
     updateTags();
     res.status(200).send('Success: ' + req.body);
