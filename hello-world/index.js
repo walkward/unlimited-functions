@@ -15,18 +15,18 @@ exports.helloWorld = function helloWorld(req, res) {
   var retrievedSignature = JSON.stringify(req.headers['x-shopify-hmac-sha256']);
 
   // Verify the Shopify webhook's integrity
-  function verifyShopifyHook(req) {
-      var digest = crypto.createHmac('SHA256', sharedSecret)
-              .update(new Buffer(req.body, 'utf8'))
-              .digest('base64');
+  // function verifyShopifyHook(req) {
+  //     var digest = crypto.createHmac('SHA256', sharedSecret)
+  //             .update(new Buffer(req.body, 'utf8'))
+  //             .digest('base64');
+  //
+  //     return digest === req.headers['x-shopify-hmac-sha256'];
+  // }
 
-      return digest === req.headers['x-shopify-hmac-sha256'];
-  }
-
-  if (verifyShopifyHook(req)){
+  if (req.body){
     // Everything is okay.
-    console.log(req.body.message);
-    res.status(200).send('Success: ' + req.body.message);
+    console.log(req.body);
+    res.status(200).send('Success: ' + req.body);
   } else {
     res.status(400).send(req);
   }

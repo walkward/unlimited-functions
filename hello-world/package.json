@@ -7,7 +7,8 @@
     "name": "helloWorld",
     "path": "hello-world",
     "repo" : "https://source.developers.google.com/p/shopify-182021/r/unlimited-functions",
-    "local_path": "http://localhost:8010/anchorsuite/us-central1/helloWorld"
+    "local_path": "http://localhost:8010/anchorsuite/us-central1/helloWorld",
+    "http_path": "https://us-central1-shopify-182021.cloudfunctions.net/helloWorld"
   },
   "scripts": {
     "start": "functions start",
