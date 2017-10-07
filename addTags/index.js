@@ -21,6 +21,9 @@ global.config = {
 }
 
 exports.addTags = function addTags(req, res) {
+  res.header('Content-Type','application/json');
+  res.header('Access-Control-Allow-Origin', '*');
+
   // Basic auth string passed to shopify api requests
   config.authorization = 'Basic ' + new Buffer(config.apiKey + ':' + config.apiSecret).toString('base64');
 
@@ -37,7 +40,7 @@ exports.addTags = function addTags(req, res) {
   // }
   // verifyShopifyHook(req);
 
-  
+
   switch (req.body.method) {
     case 'wishlist':
       wishlist.add(req.body.customerId, req.body.handle, function(apiResponse) {

@@ -13,6 +13,7 @@
     "test:dev": "functions call $npm_package_config_name --data '{\"product\":{\"id\":9875080644}}'",
     "test:dev:wishlist": "functions call $npm_package_config_name --data '{ \"method\":\"wishlist\", \"customerId\":7538827012, \"handle\":\"k2-amp-72-mens-skis-flat-2015\"}'",
     "test": "gcloud beta functions call $npm_package_config_name --data '{\"product\":{\"id\":9875080644}}'",
+    "test:wishlist": "gcloud beta functions call $npm_package_config_name --data '{ \"method\":\"wishlist\", \"customerId\":7538827012, \"handle\":\"k2-amp-72-mens-skis-flat-2015\"}'",
     "deploy:dev": "functions deploy $npm_package_config_name --trigger-http",
     "deploy": "gcloud beta functions deploy $npm_package_config_name --entry-point $npm_package_config_name --source $npm_package_config_repo --trigger-http",
     "req": "node ./request.js",
