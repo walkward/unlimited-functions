@@ -8,9 +8,9 @@
 var request = require('request');
 
 var postData = JSON.stringify({
-  product: {
-    id: 9875080644
-  }
+  method: 'wishlist',
+  customerId: 7538827012,
+  handle: 'k2-amp-72-mens-skis-flat-2015'
 });
 
 var options = {
