@@ -5,20 +5,22 @@
  * @param {!Object} res Cloud Function response context.
  */
 
+'use strict';
+
 var request = require('request');
 
 var postData = JSON.stringify({
-  method: 'wishlist',
-  customerId: 7538827012,
-  handle: 'k2-amp-72-mens-skis-flat-2015'
+  id: 374368665638,
+  title: "Test Title 3"
 });
 
 var options = {
-  url: 'http://localhost:8010/anchorsuite/us-central1/addTags',
+  url: 'http://localhost:8010/gizmo-gild/us-central1/metafields',
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'User-Agent': 'request'
+    'User-Agent': 'request',
+    'x-shopify-topic': 'product/update'
   }
 };
 

@@ -5,13 +5,15 @@
  * @param {!Object} res Cloud Function response context.
  */
 
+'use strict';
+
 var http = require("http");
 var crypto = require("crypto");
 var request = require('request');
 var getRawBody = require('raw-body');
 var Promise = require('bluebird');
 
-var wishlist = require('./api/wishlist.js');
+var product = require('./api/product.js');
 var productUpdate = require('./webhooks/productUpdate.js');
 
 global.config = {
@@ -19,7 +21,7 @@ global.config = {
   apiKey: '0131e4175677f72d4e403d2b97e650bf', // SETUP: Add API key from private app
   apiSecret: '9f68e780a3efe2e7376ec662746133b9', // SETUP: Add API secret from private app
   storeName: 'gizmogild.myshopify.com' // SETUP: Add store domain
-}
+};
 
 exports.metafields = function metafields(req, res) {
   res.header('Content-Type','application/json');
@@ -41,15 +43,19 @@ exports.metafields = function metafields(req, res) {
   // }
   // verifyShopifyHook(req);
 
-
-  switch (req.body.method) {
-    case 'wishlist':
-      wishlist.remove(req.body.customerId, req.body.handle).then((successMessage) => {
+  switch (req.headers['x-shopify-topic']) {
+    case 'products/create':
+      product.create(req.body.id, req.body.title).then((successMessage) => {
         res.status(200).send('success:' + JSON.stringify(successMessage));
       });
       break;
-    case 'product':
+    case 'products/update':
       productUpdate.updateTags(req.body.id, 'tags added, tag\'s now');
+      break;
+    case 'product/update':
+      product.update(req.body.id, req.body).then((successMessage) => {
+        res.status(200).send('success:' + JSON.stringify(successMessage));
+      });
       break;
     default:
       res.status(500).send({ error: 'Something blew up!' });
@@ -57,7 +63,7 @@ exports.metafields = function metafields(req, res) {
   }
 
   if (req.body){
-
+    console.log('Needs to update authentication');
   } else {
     res.status(400).send(req);
   }

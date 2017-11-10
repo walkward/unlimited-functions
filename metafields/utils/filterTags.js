@@ -42,7 +42,7 @@ function remove(tags, prefix, handle) {
     resolve(newTags)
 
   }).catch(err => {
-    reject(err)
+    new Error(err);
   })
 }
 

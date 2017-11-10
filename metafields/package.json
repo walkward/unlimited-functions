@@ -1,12 +1,12 @@
 {
-  "name": "addTags",
+  "name": "metafields",
   "version": "1.0.0",
   "description": "A function to update tags",
   "config": {
-    "name": "addTags",
-    "repo": "https://source.developers.google.com/projects/shopify-182021/repos/unlimited-functions/revisions/master/paths/addTags",
-    "local_path": "http://localhost:8010/anchorsuite/us-central1/addTags",
-    "http_path": "https://us-central1-shopify-182021.cloudfunctions.net/addTags"
+    "name": "metafields",
+    "repo": "https://source.developers.google.com/projects/shopify-182021/repos/unlimited-functions/revisions/master/paths/metafields",
+    "local_path": "http://localhost:8010/anchorsuite/us-central1/metafields",
+    "http_path": "https://us-central1-shopify-182021.cloudfunctions.net/metafields"
   },
   "scripts": {
     "start": "functions start",
@@ -18,7 +18,8 @@
     "deploy": "gcloud beta functions deploy $npm_package_config_name --entry-point $npm_package_config_name --source $npm_package_config_repo --trigger-http",
     "req": "node ./request.js",
     "req:dev": "node ./request.js",
-    "push": "git add . && git commit -m 'updates' && git push"
+    "push": "git add . && git commit -m 'updates' && git push",
+    "logs": "functions logs read"
   },
   "dependencies": {
     "bluebird": "^3.5.1",

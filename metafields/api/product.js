@@ -1,37 +1,77 @@
+'use strict';
+
 var request = require('request');
-var _ = require('lodash');
 var Promise = require('bluebird');
 var filterTags = require('../utils/filterTags');
 
 const settings = {
-  apiEndpoint: '/admin/customers/',
+  apiEndpoint: '/admin/products/',
   tagPrefix: 'saved::'
-}
+};
 
-function update(customerId, newTags){
+function create(productId, originalName){
   return new Promise((resolve, reject) => {
     // API request options
     const options = {
       method: 'PUT',
-      url: 'https://' + config.storeName + settings.apiEndpoint + customerId + '.json',
+      url: 'https://' + config.storeName + settings.apiEndpoint + productId + '.json',
       headers: {
         'Content-Type': 'application/json',
         authorization: config.authorization,
         'User-Agent': 'request'
       },
       body: {
-        customer: {
-          id: customerId,
-          tags: newTags
+          "product": {
+          "id": 374183723046,
+          "metafields": [
+            {
+              namespace: "tasklist",
+              key: "originalName",
+              value: originalName,
+              value_type: "string"
+            },
+            {
+              namespace: "tasklist",
+              key: "revisedTitle",
+              value: "false",
+              value_type: "string"
+            }
+          ]
         }
       },
       json: true
     };
-    request(options, function (error, res, body) {
+    request(options, function (error, res) {
       if (error) {
-        reject(new Error(error))
+        reject(new Error(error));
       } else {
-        resolve(res)
+        resolve(res);
+      }
+    });
+  });
+}
+
+function update(productId, productObj){
+  return new Promise((resolve, reject) => {
+    // API request options
+    const options = {
+      method: 'PUT',
+      url: 'https://' + config.storeName + settings.apiEndpoint + productId + '.json',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: config.authorization,
+        'User-Agent': 'request'
+      },
+      body: {
+          "product": productObj
+      },
+      json: true
+    };
+    request(options, function (error, res) {
+      if (error) {
+        reject(new Error(error));
+      } else {
+        resolve(res);
       }
     });
   });
@@ -124,4 +164,4 @@ function clear(customerId){
   });
 }
 
-module.exports = { add, remove, clear };
+module.exports = { create, update, remove, clear };
