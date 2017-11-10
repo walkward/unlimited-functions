@@ -16,12 +16,12 @@ var productUpdate = require('./webhooks/productUpdate.js');
 
 global.config = {
   sharedSecret: 'fb2110342a563e14495e5178289609166dd7c0a6eafbda88a16b0761213252fd', // SETUP: Add shared secret from webhook
-  apiKey: 'a0519e21d82dc3358637bb2c8ea47c6f', // SETUP: Add API key from private app
-  apiSecret: '04fc0169b2a94887dd4eef0f55d322e5', // SETUP: Add API secret from private app
-  storeName: 'darxe.myshopify.com' // SETUP: Add store domain
+  apiKey: '0131e4175677f72d4e403d2b97e650bf', // SETUP: Add API key from private app
+  apiSecret: '9f68e780a3efe2e7376ec662746133b9', // SETUP: Add API secret from private app
+  storeName: 'gizmogild.myshopify.com' // SETUP: Add store domain
 }
 
-exports.addTags = function addTags(req, res) {
+exports.metafields = function metafields(req, res) {
   res.header('Content-Type','application/json');
   res.header('Access-Control-Allow-Origin', '*');
 
